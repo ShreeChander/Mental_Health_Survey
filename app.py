@@ -14,8 +14,8 @@ def img_to_base64(image_path):
         img_data = img_file.read()
         return base64.b64encode(img_data).decode()
 
-image_path = "Image/Neural_Networks.webp"
-
+# image_path = "Image/Neural_Networks.webp"
+image_path = "Image/pexels-photo.webp"
 try:
     img_base64 = img_to_base64(image_path)
 
@@ -119,13 +119,14 @@ def safe_load_file(file_path, default=None):
 
 @st.cache_resource
 def load_preprocessor():
-
-    return safe_load_file("Model/preprocessor.pkl")
+    obj = safe_load_file("Pickle/preprocessor.pkl")
+    # st.write("Contents of preprocessor pickle:", obj)
+    return obj
     
 @st.cache_resource
 def load_model():
     try:
-        model = tf.keras.models.load_model("Model/neural_network.keras")
+        model = tf.keras.models.load_model("Pickle/neural_network.keras")
 
         return model
     
@@ -137,7 +138,7 @@ def load_model():
 @st.cache_resource
 def load_cleaning():
 
-    return safe_load_file("Model/cleaning.pkl", pd.DataFrame())
+    return safe_load_file("Pickle/cleaning.pkl", pd.DataFrame())
 
 def predict_depression(input_data, model, preprocessor):
 
@@ -169,7 +170,7 @@ def predict_depression(input_data, model, preprocessor):
 
 st.title("Mental Health Depression Prediction Application")
 st.sidebar.header("Navigation Bar ->")
-page = st.sidebar.radio("Pages", ["Home", "Upload Data", "Manual Entry", "Visualizations", "Bias_Evaluation"])
+page = st.sidebar.radio("Pages", ["Home", "Upload Data", "Manual Entry", "Visualizations", "Disparity Insights"])
 
 if page == "Home":
     st.write("#### Predicting Depression using Artificial Intelligence")
@@ -201,8 +202,17 @@ if page == "Upload Data":
         
         preprocessor = load_preprocessor()
         model = load_model()
-        
-        preprocessed_data = preprocessor.transform(cleaned_data.copy())
+        # st.write(f"Loaded preprocessor type: {type(preprocessor)}")
+        preprocessor = load_preprocessor()
+
+        # Make sure it's not None and is the right class
+        if preprocessor is not None:
+            print(f"Preprocessor loaded successfully: {type(preprocessor)}")
+            preprocessed_data = preprocessor.transform(cleaned_data.copy())
+            st.write("### Preprocessed Data Preview")
+            st.dataframe(preprocessed_data.head())
+        else:
+            st.error("Failed to load preprocessor. Please check your pickle file.")
 
         expected_features = 13
         if preprocessed_data.shape[1] > expected_features:
@@ -321,7 +331,7 @@ elif page == "Visualizations":
     else:
         st.warning("No predicted data available. Please run predictions in the Upload Data section first.")
 
-elif page == 'Bias_Evaluation':
+elif page == 'Disparity Insights':
 
     st.header("Bias Evaluation for Prediction Distribution")
     
