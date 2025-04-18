@@ -179,9 +179,16 @@ if page == "Home":
     st.write("##### Depression is a mental health disorder that affects millions worldwide, impacting mood, energy levels, and daily life.")
     st.write("##### It can range from mild sadness to severe clinical depression, requiring professional intervention.")
     st.markdown("<br>", unsafe_allow_html=True)
+
+    # Final Thought
     st.write("### Final Thought -")
     st.write("##### Depression is a serious but treatable condition. Small daily actions can improve mental health and prevent depression.")
     st.write("##### If you or someone you know struggles with depression, reach out for support always —> you're not alone !!!")
+
+    # Adding the helpline
+    st.write("### Need Help?")
+    st.write("#### **National Helpline (India):** 1-800-599-0019")
+    st.write("##### Available 24/7 for mental health support.")
 
 if "predicted_data" not in st.session_state:
     st.session_state["predicted_data"] = pd.DataFrame()
