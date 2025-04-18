@@ -69,36 +69,18 @@ This application is designed for use by individuals, healthcare professionals, a
 ### Step 1: Clone the repository
 git clone https://github.com/ShreeChander/Mental_Health_Survey.git
 
-shell
-Always show details
-
-Copy
 
 ### Step 2: Create a virtual environment
 conda create --name mental_health python=3.8 conda activate mental_health
 
-bash
-Always show details
-
-Copy
 
 ### Step 3: Install dependencies
 Install the necessary Python packages using the following command:
 pip install -r requirements.txt
 
-bash
-Always show details
-
-Copy
-
 ### Step 4: Run the Streamlit app
 To run the app locally, use the following command:
 streamlit run Streamlit.py
-
-yaml
-Always show details
-
-Copy
 
 ---
 
@@ -110,18 +92,6 @@ Copy
 4. **Visualizations** – The app displays insightful visualizations, including correlation heatmaps and depression distribution charts, to help users understand the results.
 5. **Depression Risk** – The app provides a risk prediction based on the user data, assisting in early intervention.
 
----
-
-## Support
-
-For any issues or support, please contact us at:  
-**Email:** support@mentalhealth.ai
-
----
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ---
 
@@ -131,3 +101,9 @@ Depression is a serious but treatable condition, and early identification can si
 
 **Helpline (India):** 1-800-599-0019 (Available 24/7)
 """
+
+---
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
