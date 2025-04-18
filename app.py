@@ -3,6 +3,8 @@ import pickle
 import numpy as np
 import pandas as pd
 import seaborn as sns
+import plotly.express as px
+import plotly.graph_objects as go
 import streamlit as st
 import tensorflow as tf
 import matplotlib.pyplot as plt
@@ -325,7 +327,21 @@ elif page == "Visualizations":
             plt.figure(figsize=(10, 6))
             sns.heatmap(numeric_data.corr(), annot=True, cmap="coolwarm")
             st.pyplot(plt)
+            # st.write("#### Correlation Heatmap (Predicted Data)")
 
+            # # Calculate correlation
+            # corr_matrix = numeric_data.corr()
+
+            # # Plot using Plotly
+            # fig = px.imshow(
+            #     corr_matrix,
+            #     text_auto=True,
+            #     color_continuous_scale='RdBu_r',
+            #     aspect='auto',
+            #     title='Correlation Heatmap'
+            # )
+
+            # st.plotly_chart(fig, use_container_width=True)
         else:
             st.warning("No numeric columns available for correlation heatmap.")
 
